@@ -1,0 +1,24 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/gregoire/Documents/Code/ros2_ws/install/urdf_tutorial/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/rrbot_simpleurdf/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/phantomx_gazebo/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/phantomx_description/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/hopper_gazebo/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_simpleurdf/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_description/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_controller/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/gregoire/Documents/Code/ros2_ws/install/urdf_tutorial/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/rrbot_simpleurdf/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/phantomx_gazebo/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/phantomx_description/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/hopper_gazebo/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_simpleurdf/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_description/lib/python3.8/site-packages",
+        "/home/gregoire/Documents/Code/ros2_ws/install/farmbot_controller/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ]
+}
