@@ -24,11 +24,11 @@ async def test_home():
 async def test_move():
 
     gcode_lines = [
-        "G00 X0 Y1 Z0 1 1 1",
-        "G00 X1 Y1 Z0.5 1 1 1",
-        "G00 X1 Y2 Z0.5 1 1 1",
-        "G00 X0 Y2 Z0.5 -1 1 1",
-        "G00 X0 Y1 Z0 1 -1 -1",
+        "G00 X0 Y1 Z0 A1 B1 C1",
+        "G00 X1 Y1 Z0.5 A1 B1 C1",
+        "G00 X1 Y2 Z0.5 A1 B1 C1",
+        "G00 X0 Y2 Z0.5 A-1 B1 C1",
+        "G00 X0 Y1 Z0 A1 B-1 C-1",
     ]
     position_controller = StatePublisher()
     move_controller = MoveController(position_controller)
