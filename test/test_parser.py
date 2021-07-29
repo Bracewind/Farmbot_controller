@@ -1,6 +1,4 @@
 from typing import List, Tuple
-from farmbot_controller.move_controller import MoveController, FarmbotState
-from farmbot_controller.move_planifier import MovePlanifier
 import pytest
 from time import sleep
 
@@ -10,6 +8,8 @@ import numpy as np
 import asyncio
 
 from farmbot_controller.gcode_parser import GCodeParser
+from farmbot_controller.move_controller import MoveController, FarmbotState
+from farmbot_controller.move_planifier import MovePlanifier
 from .stub_move_controller import StubMoveController
 
 
@@ -47,18 +47,21 @@ async def test_movement():
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "gcode_line, expected_result",
+    "gcode_line, expected_result, position_controller_expected_call",
     [
-        ("G00 1 1 1 1 1 1", [1, 1, 1]),
-        ("G00 1.2 1 1 1 1 1.1", [1.2, 1, 1]),
+        ("G00 1 1 1 0.5 0.5 0.5", [1, 1, 1], 40),
+        ("G00 1.2 1 1 1 1 1.1", [1.2, 1, 1], 24),
+        ("G00 2 1 1 1 1 1", [2, 1, 1], 40),
+        ("G00 2 2 1 1 1 1", [2, 2, 1], 40),
+        ("G00 1 2 1 1 1 1", [1, 2, 1], 40),
     ],
 )
-async def test_scenario(gcode_line, expected_result):
+async def test_scenario(gcode_line, expected_result, position_controller_expected_call):
     position_controller = Mock()
     move_controller = MoveController(position_controller)
     move_planifier = MovePlanifier(move_controller)
     gcode_parser = GCodeParser(move_planifier)
     gcode_parser.execute(gcode_line)
-    print(move_controller.current_position)
     await move_controller.wait_ready()
     assert (move_controller.current_position == np.array(expected_result)).all()
+    assert len(position_controller.method_calls) == position_controller_expected_call

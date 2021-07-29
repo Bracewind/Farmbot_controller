@@ -22,7 +22,7 @@ class GCodeParser:
 
     def _move_to_point_at_given_speed(self, param: List[str]):
         self.move_controller.move_to_point_at_given_speed(
-            *[float(elem) for elem in param]
+            *[float(elem[1:]) for elem in param]
         )
 
     def _move_home(self, param):

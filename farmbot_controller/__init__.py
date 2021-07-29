@@ -1,1 +1,1 @@
-# pkg_name = "farmbot_controller"
+pkg_name = "farmbot_controller"

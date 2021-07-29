@@ -29,7 +29,7 @@ class MovePlanifier(threading.Thread, MoveControllerInterface):
         self._current_position = np.array([0.0, 0.0, 0.0])
         self._max_speed = 1
         self._wanted_speed = 0
-        self._current_home = np.array([0, 0, 0])
+        self._current_home = np.array([0.0, 0.0, 0.0])
         self._current_destination = self._current_home
         self.keep_going = True
         self.move_controller = move_controller
@@ -52,7 +52,7 @@ class MovePlanifier(threading.Thread, MoveControllerInterface):
         )
 
         self.move_to_point_at_given_speed(
-            *(np.concatenate(final_position, MovePlanifier.DEFAULT_SPEED))
+            *(np.concatenate((final_position, MovePlanifier.DEFAULT_SPEED)))
         )
 
     async def stop(self):

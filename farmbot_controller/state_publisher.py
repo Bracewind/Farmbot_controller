@@ -1,4 +1,5 @@
 from math import sin, cos, pi
+import logging
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
@@ -31,15 +32,26 @@ class StatePublisher(Node):
             "joint_crossslide_zaxis",
         ]
 
+        self.send_wanted_position(0.0, 0.0, 0.0)
+
     def send_wanted_position(
         self, gantry_move: float, crossslide_move: float, zaxis_move: float
     ):
+        gantry_move_float = float(gantry_move)
+        crossslide_move_float = float(crossslide_move)
+        zaxis_move_float = float(zaxis_move)
+
         joint_state = JointState()
         # update joint_state
         now = self.get_clock().now()
         joint_state.header.stamp = now.to_msg()
         joint_state.name = self.joint_names
-        joint_state.position = [gantry_move, crossslide_move, zaxis_move]
+
+        joint_state.position = [
+            gantry_move_float,
+            crossslide_move_float,
+            zaxis_move_float,
+        ]
 
         """
                 # update transform
@@ -61,6 +73,14 @@ class StatePublisher(Node):
         odom_trans.transform.translation.y = 0.0
         odom_trans.transform.translation.z = 0.0
         odom_trans.transform.rotation = euler_to_quaternion(0, 0, 0)
+
+        logging.info(
+            f"sending following values : \n\
+                        - gantry {gantry_move_float}\n\
+                        - cross slide {crossslide_move_float} \n\
+                        - zaxis {zaxis_move_float} \n\
+                        "
+        )
 
         # send the joint state and transform
         self.joint_pub.publish(joint_state)

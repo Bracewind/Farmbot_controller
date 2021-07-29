@@ -8,7 +8,6 @@ from farmbot_controller import pkg_name
 
 
 def generate_launch_description():
-
     return LaunchDescription(
         [
             DeclareLaunchArgument(
